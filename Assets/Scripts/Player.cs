@@ -1,0 +1,31 @@
+using UnityEngine;
+
+namespace Assets.Scripts
+{
+    public class Player : MonoBehaviour
+    {
+        public float playerSpeed;
+        private Rigidbody2D rb;
+        private Vector2 playerDirection;
+        
+
+        void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            
+        }
+
+        void Update()
+        {
+            float directionY = Input.GetAxisRaw("Vertical");
+
+            playerDirection = new Vector2(0f, directionY).normalized;
+        }
+
+        void FixedUpdate()
+        {
+            rb.velocity = new Vector2(0f, playerSpeed * playerDirection.y);
+        }
+
+    }
+}
